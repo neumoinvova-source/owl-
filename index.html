@@ -1,95 +1,98 @@
-bers {
-                display: none;
-            }
+исать сообщение..."
+                    autocomplete="off"
+                >
 
-            .sidebar {
-                width: 180px;
-            }
+                <button class="send" onclick="sendMessage()">
+                    ➤
+                </button>
 
-            .call-bar {
-                left: 180px;
-                right: 0;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="app">
-
-    <aside class="sidebar">
-
-        <div class="logo">🦉 OWL</div>
-
-        <div class="menu-title">Навигация</div>
-
-        <button class="menu-button">💬 Чаты</button>
-        <button class="menu-button">📞 Звонки</button>
-
-        <div class="menu-title">Мои вещи</div>
-
-        <button class="menu-button">🔊 Звуки</button>
-        <button class="menu-button">🖼️ Стикеры</button>
-
-        <div class="menu-title">Аккаунт</div>
-
-        <button class="menu-button">👤 Профиль</button>
-
-    </aside>
-
-    <main class="chat">
-
-        <div class="chat-header">
-            💬 Общий чат
-        </div>
-
-        <div class="messages">
-
-            <div class="message">
-                <div class="name">🦉 OWL</div>
-                <div class="text">Добро пожаловать в OWL!</div>
             </div>
 
-            <div class="message">
-                <div class="name">Макс</div>
-                <div class="text">Когда уже играем? 😂</div>
-            </div>
-
-            <div class="message">
-                <div class="name">Дима</div>
-                <div class="text">Я готов.</div>
-            </div>
-
-        </div>
-
-        <div class="input-area">
-            <input type="text" placeholder="Написать сообщение...">
-            <button class="send">➤</button>
         </div>
 
     </main>
+
+    <!-- УЧАСТНИКИ -->
 
     <aside class="members">
 
         <h3>👥 Участники — 4</h3>
 
-        <div class="member online">🟢 Вова</div>
-        <div class="member online">🟢 Макс</div>
-        <div class="member">⚪ Дима</div>
-        <div class="member online">🟢 Саша</div>
+        <div class="member">
+            <span class="status"></span>
+            Вова
+        </div>
+
+        <div class="member">
+            <span class="status"></span>
+            Макс
+        </div>
+
+        <div class="member">
+            <span class="status offline"></span>
+            Дима
+        </div>
+
+        <div class="member">
+            <span class="status"></span>
+            Саша
+        </div>
 
     </aside>
 
 </div>
 
-<div class="call-bar">
+<script>
 
-    <button class="call-button">🎙️ Микрофон</button>
-    <button class="call-button">🔊 Звук</button>
-    <button class="call-button">📞 Позвонить</button>
+function sendMessage() {
 
-</div>
+    const input = document.getElementById("messageInput");
+    const messages = document.getElementById("messages");
+
+    const text = input.value.trim();
+
+    if (text === "") {
+        return;
+    }
+
+    const message = document.createElement("div");
+
+    message.className = "message";
+
+    message.innerHTML = `
+        <div class="avatar">👤</div>
+
+        <div class="message-info">
+            <div class="message-name">Вова</div>
+            <div class="message-text">${escapeHtml(text)}</div>
+        </div>
+    `;
+
+    messages.appendChild(message);
+
+    input.value = "";
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function escapeHtml(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+document.getElementById("messageInput").addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+
+});
+
+</script>
 
 </body>
 </html>
