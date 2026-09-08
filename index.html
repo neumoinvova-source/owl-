@@ -1,162 +1,172 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWL</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>OWL</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            color: #222;
-        }
+<style>
 
-        .app {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .header {
-            background: #222;
-            color: white;
-            padding: 18px;
-            font-size: 24px;
-            font-weight: bold;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    color: #222;
+}
 
-        .content {
-            display: flex;
-            min-height: 600px;
-        }
+.app {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-        .sidebar {
-            width: 220px;
-            background: #f7f7f7;
-            border-right: 1px solid #ddd;
-            padding: 15px;
-        }
+.header {
+    background: #222;
+    color: white;
+    padding: 18px;
+    font-size: 24px;
+    font-weight: bold;
+}
 
-        .sidebar h3 {
-            margin-top: 0;
-        }
+.content {
+    display: flex;
+    min-height: 600px;
+}
 
-        .button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #bbb;
-            background: white;
-            border-radius: 6px;
-            cursor: pointer;
-            text-align: left;
-        }
+.sidebar {
+    width: 220px;
+    background: #f7f7f7;
+    border-right: 1px solid #ddd;
+    padding: 15px;
+}
 
-        .button:hover {
-            background: #eee;
-        }
+.sidebar h2 {
+    margin-top: 0;
+}
 
-        .chat {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+.button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
+}
 
-        .chat-header {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            font-size: 20px;
-            font-weight: bold;
-        }
+.button:hover {
+    background: #eee;
+}
 
-        .messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
+.members {
+    margin-top: 25px;
+}
 
-        .message {
-            margin-bottom: 15px;
-        }
+.member {
+    margin: 12px 0;
+    font-size: 16px;
+}
 
-        .name {
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
+.online {
+    color: #00a83b;
+}
 
-        .text {
-            background: #eee;
-            display: inline-block;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
+.chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-        .input-area {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid #ddd;
-            gap: 10px;
-        }
+.chat-header {
+    padding: 18px;
+    border-bottom: 1px solid #ddd;
+    font-size: 21px;
+    font-weight: bold;
+}
 
-        .input-area input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            font-size: 16px;
-        }
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
 
-        .send {
-            padding: 12px 20px;
-            border: none;
-            background: #222;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+.message {
+    margin-bottom: 16px;
+}
 
-        .send:hover {
-            background: #444;
-        }
+.name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
 
-        .online {
-            color: green;
-        }
+.text {
+    display: inline-block;
+    background: #eee;
+    padding: 9px 13px;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
 
-        .members {
-            margin-top: 25px;
-        }
+.input-area {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
 
-        .member {
-            margin: 10px 0;
-        }
+.input-area input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 16px;
+}
 
-        @media (max-width: 700px) {
-            .app {
-                margin: 0;
-                border-radius: 0;
-            }
+.send {
+    width: 55px;
+    border: none;
+    border-radius: 6px;
+    background: #222;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
 
-            .content {
-                flex-direction: column;
-            }
+.send:hover {
+    background: #444;
+}
 
-            .sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid #ddd;
-            }
-        }
-    </style>
+@media (max-width: 700px) {
+
+    .app {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
@@ -171,36 +181,37 @@
 
         <div class="sidebar">
 
-            <h3>Навигация</h3>
+            <h2>Навигация</h2>
 
-            <button class="button" onclick="alert('Раздел чатов')">
+            <button class="button">
                 💬 Чаты
             </button>
 
-            <button class="button" onclick="alert('Звонки пока недоступны')">
+            <button class="button" onclick="alert('Звонки появятся позже')">
                 📞 Звонки
             </button>
 
-            <button class="button" onclick="alert('Профиль')">
+            <button class="button" onclick="alert('Профиль появится позже')">
                 👤 Профиль
             </button>
 
             <div class="members">
 
-                <h3>Участники</h3>
+                <h2>Участники</h2>
 
-                <div class="member">
+                <div class="member online">
                     🟢 Вова
                 </div>
 
-                <div class="member">
+                <div class="member online">
                     🟢 Макс
                 </div>
-                <div class="member">
+
+                <div class="member online">
                     🟢 Дима
                 </div>
 
-                <div class="member">
+                <div class="member online">
                     🟢 Саша
                 </div>
 
@@ -214,40 +225,21 @@
                 💬 Общий чат
             </div>
 
-            <div class="messages" id="messages">
-
-                <div class="message">
-                    <div class="name">OWL</div>
-                    <div class="text">
-                        Добро пожаловать в OWL!
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="name">Макс</div>
-                    <div class="text">
-                        Когда уже играем? 😎
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="name">Дима</div>
-                    <div class="text">
-                        Я готов.
-                    </div>
-                </div>
-
-            </div>
+            <div class="messages" id="messages"></div>
 
             <div class="input-area">
 
                 <input
-                    type="text"
                     id="messageInput"
+                    type="text"
                     placeholder="Написать сообщение..."
+                    autocomplete="off"
                 >
 
-                <button class="send" onclick="sendMessage()">
+                <button
+                    class="send"
+                    onclick="sendMessage()"
+                >
                     ➤
                 </button>
 
@@ -260,11 +252,69 @@
 </div>
 
 <script>
+    const defaultMessages = [
+    {
+        name: "OWL",
+        text: "Добро пожаловать в OWL!"
+    },
+    {
+        name: "Макс",
+        text: "Когда уже играем? 😎"
+    },
+    {
+        name: "Дима",
+        text: "Я готов."
+    }
+];
+
+let messages = JSON.parse(
+    localStorage.getItem("owl_messages")
+);
+
+if (!messages) {
+    messages = defaultMessages;
+    saveMessages();
+}
+
+function saveMessages() {
+    localStorage.setItem(
+        "owl_messages",
+        JSON.stringify(messages)
+    );
+}
+
+function showMessages() {
+
+    const container = document.getElementById("messages");
+
+    container.innerHTML = "";
+
+    messages.forEach(function(message) {
+
+        const block = document.createElement("div");
+        block.className = "message";
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = message.name;
+
+        const text = document.createElement("div");
+        text.className = "text";
+        text.textContent = message.text;
+
+        block.appendChild(name);
+        block.appendChild(text);
+
+        container.appendChild(block);
+
+    });
+
+    container.scrollTop = container.scrollHeight;
+}
 
 function sendMessage() {
 
     const input = document.getElementById("messageInput");
-    const messages = document.getElementById("messages");
 
     const text = input.value.trim();
 
@@ -272,28 +322,29 @@ function sendMessage() {
         return;
     }
 
-    const message = document.createElement("div");
-    message.className = "message";
+    messages.push({
+        name: "Вова",
+        text: text
+    });
 
-    message.innerHTML = 
-        <div class="name">Вова</div>
-        <div class="text">${text}</div>
-    ;
-
-    messages.appendChild(message);
+    saveMessages();
 
     input.value = "";
 
-    messages.scrollTop = messages.scrollHeight;
+    showMessages();
 }
 
-document.getElementById("messageInput").addEventListener("keydown", function(event) {
+document
+    .getElementById("messageInput")
+    .addEventListener("keydown", function(event) {
 
-    if (event.key === "Enter") {
-        sendMessage();
-    }
+        if (event.key === "Enter") {
+            sendMessage();
+        }
 
-});
+    });
+
+showMessages();
 
 </script>
 
