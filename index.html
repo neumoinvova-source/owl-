@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>OWL</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -15,71 +13,73 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    background: #f1f1f1;
     color: #222;
 }
 
 .app {
     max-width: 1000px;
-    margin: 30px auto;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.header {
-    background: #222;
-    color: white;
-    padding: 18px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.content {
+    height: 90vh;
+    margin: 5vh auto;
     display: flex;
-    min-height: 600px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
 }
+
+/* Левая часть */
 
 .sidebar {
-    width: 220px;
-    background: #f7f7f7;
-    border-right: 1px solid #ddd;
-    padding: 15px;
+    width: 240px;
+    background: #eeeeee;
+    padding: 20px;
 }
 
-.sidebar h2 {
-    margin-top: 0;
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
 }
 
 .button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 8px;
     background: white;
-    border: 1px solid #bbb;
-    border-radius: 6px;
     cursor: pointer;
-    font-size: 15px;
     text-align: left;
+    font-size: 15px;
 }
 
 .button:hover {
-    background: #eee;
+    background: #dddddd;
 }
 
-.members {
+.section-title {
     margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #777;
 }
 
-.member {
-    margin: 12px 0;
-    font-size: 16px;
+.friend {
+    padding: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.friend:hover {
+    background: #dddddd;
 }
 
 .online {
-    color: #00a83b;
+    color: green;
 }
+
+/* Чат */
 
 .chat {
     flex: 1;
@@ -88,10 +88,10 @@ body {
 }
 
 .chat-header {
-    padding: 18px;
-    border-bottom: 1px solid #ddd;
-    font-size: 21px;
+    padding: 20px;
+    font-size: 20px;
     font-weight: bold;
+    border-bottom: 1px solid #ddd;
 }
 
 .messages {
@@ -101,45 +101,42 @@ body {
 }
 
 .message {
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 }
 
-.name {
+.message-name {
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
-.text {
+.message-text {
+    background: #eeeeee;
     display: inline-block;
-    background: #eee;
-    padding: 9px 13px;
-    border-radius: 8px;
-    max-width: 80%;
-    word-wrap: break-word;
+    padding: 8px 12px;
+    border-radius: 10px;
 }
 
 .input-area {
     display: flex;
-    gap: 10px;
     padding: 15px;
     border-top: 1px solid #ddd;
+    gap: 10px;
 }
 
 .input-area input {
     flex: 1;
     padding: 12px;
-    border: 1px solid #bbb;
-    border-radius: 6px;
-    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
 }
 
 .send {
-    width: 55px;
+    padding: 12px 18px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #222;
     color: white;
-    font-size: 20px;
     cursor: pointer;
 }
 
@@ -147,25 +144,43 @@ body {
     background: #444;
 }
 
-@media (max-width: 700px) {
+/* Нижние кнопки */
 
+.bottom-buttons {
+    display: flex;
+    gap: 8px;
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+}
+
+.bottom-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #eeeeee;
+    cursor: pointer;
+}
+
+/* Телефон */
+
+@media (max-width: 700px) {
     .app {
         margin: 0;
+        width: 100%;
+        height: 100vh;
         border-radius: 0;
     }
 
-    .content {
-        flex-direction: column;
-    }
-
     .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
+        width: 170px;
+        padding: 12px;
     }
 
+    .logo {
+        font-size: 22px;
+    }
 }
-
 </style>
 </head>
 
@@ -173,77 +188,79 @@ body {
 
 <div class="app">
 
-    <div class="header">
-        🦉 OWL
+    <!-- Сайдбар -->
+
+    <div class="sidebar">
+
+        <div class="logo">🦉 OWL</div>
+
+        <button class="button" onclick="openChat('Общий чат')">
+            💬 Чаты
+        </button>
+
+        <button class="button" onclick="showCalls()">
+            📞 Звонки
+        </button>
+
+        <button class="button" onclick="showProfile()">
+            👤 Профиль
+        </button>
+
+        <div class="section-title">
+            ДРУЗЬЯ
+        </div>
+
+        <div class="friend" onclick="openChat('Макс')">
+            🟢 Макс
+        </div>
+
+        <div class="friend" onclick="openChat('Дима')">
+            🟢 Дима
+        </div>
+
+        <div class="friend" onclick="openChat('Саша')">
+            🟢 Саша
+        </div>
+
     </div>
 
-    <div class="content">
 
-        <div class="sidebar">
+    <!-- Чат -->
 
-            <h2>Навигация</h2>
+    <div class="chat">
 
-            <button class="button">
-                💬 Чаты
+        <div class="chat-header" id="chatTitle">
+            💬 Общий чат
+        </div>
+
+        <div class="messages" id="messages"></div>
+
+        <div class="input-area">
+
+            <input
+                id="messageInput"
+                type="text"
+                placeholder="Написать сообщение..."
+            >
+
+            <button class="send" onclick="sendMessage()">
+                Отправить
             </button>
-
-            <button class="button" onclick="alert('Звонки появятся позже')">
-                📞 Звонки
-            </button>
-
-            <button class="button" onclick="alert('Профиль появится позже')">
-                👤 Профиль
-            </button>
-
-            <div class="members">
-
-                <h2>Участники</h2>
-
-                <div class="member online">
-                    🟢 Вова
-                </div>
-
-                <div class="member online">
-                    🟢 Макс
-                </div>
-
-                <div class="member online">
-                    🟢 Дима
-                </div>
-
-                <div class="member online">
-                    🟢 Саша
-                </div>
-
-            </div>
 
         </div>
 
-        <div class="chat">
+        <div class="bottom-buttons">
 
-            <div class="chat-header">
-                💬 Общий чат
-            </div>
+            <button onclick="showCalls()">
+                🎤 Микрофон
+            </button>
+            <button onclick="showSounds()">
+                🔊 Звуки
+            </button>
 
-            <div class="messages" id="messages"></div>
-
-            <div class="input-area">
-
-                <input
-                    id="messageInput"
-                    type="text"
-                    placeholder="Написать сообщение..."
-                    autocomplete="off"
-                >
-
-                <button
-                    class="send"
-                    onclick="sendMessage()"
-                >
-                    ➤
-                </button>
-
-            </div>
+            <button onclick="showStickers()">
+                🖼️ Стикеры
+            </button>
 
         </div>
 
@@ -251,11 +268,13 @@ body {
 
 </div>
 
+
 <script>
-    const defaultMessages = [
+
+const defaultMessages = [
     {
         name: "OWL",
-        text: "Добро пожаловать в OWL!"
+        text: "Добро пожаловать в OWL! 🦉"
     },
     {
         name: "Макс",
@@ -273,7 +292,6 @@ let messages = JSON.parse(
 
 if (!messages) {
     messages = defaultMessages;
-    saveMessages();
 }
 
 function saveMessages() {
@@ -285,38 +303,53 @@ function saveMessages() {
 
 function showMessages() {
 
-    const container = document.getElementById("messages");
+    const container =
+        document.getElementById("messages");
 
     container.innerHTML = "";
 
     messages.forEach(function(message) {
 
-        const block = document.createElement("div");
-        block.className = "message";
+        const messageBlock =
+            document.createElement("div");
 
-        const name = document.createElement("div");
-        name.className = "name";
-        name.textContent = message.name;
+        messageBlock.className = "message";
 
-        const text = document.createElement("div");
-        text.className = "text";
-        text.textContent = message.text;
+        const name =
+            document.createElement("div");
 
-        block.appendChild(name);
-        block.appendChild(text);
+        name.className = "message-name";
 
-        container.appendChild(block);
+        name.textContent =
+            message.name;
+
+        const text =
+            document.createElement("div");
+
+        text.className = "message-text";
+
+        text.textContent =
+            message.text;
+
+        messageBlock.appendChild(name);
+        messageBlock.appendChild(text);
+
+        container.appendChild(messageBlock);
 
     });
 
-    container.scrollTop = container.scrollHeight;
+    container.scrollTop =
+        container.scrollHeight;
 }
+
 
 function sendMessage() {
 
-    const input = document.getElementById("messageInput");
+    const input =
+        document.getElementById("messageInput");
 
-    const text = input.value.trim();
+    const text =
+        input.value.trim();
 
     if (text === "") {
         return;
@@ -329,10 +362,11 @@ function sendMessage() {
 
     saveMessages();
 
-    input.value = "";
-
     showMessages();
+
+    input.value = "";
 }
+
 
 document
     .getElementById("messageInput")
@@ -343,6 +377,43 @@ document
         }
 
     });
+
+
+function openChat(name) {
+
+    document.getElementById("chatTitle")
+        .textContent = "💬 " + name;
+
+}
+
+
+function showCalls() {
+
+    alert("📞 Звонки подключим следующим этапом!");
+
+}
+
+
+function showProfile() {
+
+    alert("👤 Профиль подключим следующим этапом!");
+
+}
+
+
+function showSounds() {
+
+    alert("🔊 Здесь будет наша звуковая панель!");
+
+}
+
+
+function showStickers() {
+
+    alert("🖼️ Здесь будут стикеры!");
+
+}
+
 
 showMessages();
 
