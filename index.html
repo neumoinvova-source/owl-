@@ -270,7 +270,13 @@ body {
 
 <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
 <script>
+const socket = io("https://owl-server-9w05.onrender.com");
 
+socket.on("receive_message", (message) => {
+    messages.push(message);
+    saveMessages();
+    showMessages();
+});
 const defaultMessages = [
     {
         name: "OWL",
@@ -278,13 +284,7 @@ const defaultMessages = [
     },
     {
         name: "Макс",
-       const socket = io("https://owl-server-9w05.onrender.com");
-
-socket.on("receive_message", (message) => {
-    messages.push(message);
-    saveMessages();
-    showMessages();
-});
+       
     text: "Когда уже играем? 😎"
     },
     {
