@@ -1,5 +1,250 @@
-исать сообщение..."
-                    autocomplete="off"
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            color: #222;
+        }
+
+        .app {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #222;
+            color: white;
+            padding: 18px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .content {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #f7f7f7;
+            border-right: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #bbb;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .button:hover {
+            background: #eee;
+        }
+
+        .chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .text {
+            background: #eee;
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .input-area {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .send {
+            padding: 12px 20px;
+            border: none;
+            background: #222;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .send:hover {
+            background: #444;
+        }
+
+        .online {
+            color: green;
+        }
+
+        .members {
+            margin-top: 25px;
+        }
+
+        .member {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 700px) {
+            .app {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        🦉 OWL
+    </div>
+
+    <div class="content">
+
+        <div class="sidebar">
+
+            <h3>Навигация</h3>
+
+            <button class="button" onclick="alert('Раздел чатов')">
+                💬 Чаты
+            </button>
+
+            <button class="button" onclick="alert('Звонки пока недоступны')">
+                📞 Звонки
+            </button>
+
+            <button class="button" onclick="alert('Профиль')">
+                👤 Профиль
+            </button>
+
+            <div class="members">
+
+                <h3>Участники</h3>
+
+                <div class="member">
+                    🟢 Вова
+                </div>
+
+                <div class="member">
+                    🟢 Макс
+                </div>
+                <div class="member">
+                    🟢 Дима
+                </div>
+
+                <div class="member">
+                    🟢 Саша
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat">
+
+            <div class="chat-header">
+                💬 Общий чат
+            </div>
+
+            <div class="messages" id="messages">
+
+                <div class="message">
+                    <div class="name">OWL</div>
+                    <div class="text">
+                        Добро пожаловать в OWL!
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="name">Макс</div>
+                    <div class="text">
+                        Когда уже играем? 😎
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="name">Дима</div>
+                    <div class="text">
+                        Я готов.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Написать сообщение..."
                 >
 
                 <button class="send" onclick="sendMessage()">
@@ -10,35 +255,7 @@
 
         </div>
 
-    </main>
-
-    <!-- УЧАСТНИКИ -->
-
-    <aside class="members">
-
-        <h3>👥 Участники — 4</h3>
-
-        <div class="member">
-            <span class="status"></span>
-            Вова
-        </div>
-
-        <div class="member">
-            <span class="status"></span>
-            Макс
-        </div>
-
-        <div class="member">
-            <span class="status offline"></span>
-            Дима
-        </div>
-
-        <div class="member">
-            <span class="status"></span>
-            Саша
-        </div>
-
-    </aside>
+    </div>
 
 </div>
 
@@ -56,32 +273,18 @@ function sendMessage() {
     }
 
     const message = document.createElement("div");
-
     message.className = "message";
 
-    message.innerHTML = `
-        <div class="avatar">👤</div>
-
-        <div class="message-info">
-            <div class="message-name">Вова</div>
-            <div class="message-text">${escapeHtml(text)}</div>
-        </div>
-    `;
+    message.innerHTML = 
+        <div class="name">Вова</div>
+        <div class="text">${text}</div>
+    ;
 
     messages.appendChild(message);
 
     input.value = "";
 
     messages.scrollTop = messages.scrollHeight;
-}
-
-function escapeHtml(text) {
-
-    const div = document.createElement("div");
-
-    div.textContent = text;
-
-    return div.innerHTML;
 }
 
 document.getElementById("messageInput").addEventListener("keydown", function(event) {
