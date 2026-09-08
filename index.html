@@ -278,7 +278,14 @@ const defaultMessages = [
     },
     {
         name: "Макс",
-        text: "Когда уже играем? 😎"
+       const socket = io("https://owl-server-9w05.onrender.com");
+
+socket.on("receive_message", (message) => {
+    messages.push(message);
+    saveMessages();
+    showMessages();
+});
+    text: "Когда уже играем? 😎"
     },
     {
         name: "Дима",
